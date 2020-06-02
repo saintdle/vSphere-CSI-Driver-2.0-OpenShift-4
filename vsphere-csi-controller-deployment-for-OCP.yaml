@@ -144,7 +144,7 @@ spec:
             - name: VSPHERE_CSI_CONFIG
               value: /etc/cloud/csi-vsphere.conf
             - name: LOGGER_LEVEL
-              value: DEVELOPMENT
+              value: PRODUCTION
           imagePullPolicy: Always
           volumeMounts:
             - name: vsphere-config-volume
