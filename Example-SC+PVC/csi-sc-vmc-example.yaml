@@ -1,0 +1,11 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: csi-sc-vmc
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "false"
+provisioner: csi.vsphere.vmware.com
+parameters:
+  StoragePolicyName: "vSAN Default Storage Policy"
+  # Get the below url by running this PowerCLI command against your SDDC vCenter: get-datastore work* | Select -ExpandProperty ExtensionData | select -ExpandProperty Info 
+  datastoreURL: "ds:///vmfs/volumes/vsan:3672d400f5fa4515-8a8cb78f6b972f74/"
