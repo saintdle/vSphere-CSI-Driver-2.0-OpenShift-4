@@ -1,0 +1,68 @@
+node/manager.go:232 Renewing VM VirtualMachine:vm-8930 [VirtualCenterHost: vcenter.simon.local, UUID: 422c07ac-55cf-9ffe-1c0b-7cf1e27bca98, Datacenter: Datacenter [Datacenter: Datacenter:datacenter-3 @ /SDDC-Datacenter, VirtualCenterHost: vcenter.simon.local]], no new connection needed: nodeUUID 422c07ac-55cf-9ffe-1c0b-7cf1e27bca98 {"TraceId": "b4449fdd-dca0-476d-9911-07f2326c45e9"}
+node/manager.go:245 Updated VM VirtualMachine:vm-8930 [VirtualCenterHost: vcenter.simon.local, UUID: 422c07ac-55cf-9ffe-1c0b-7cf1e27bca98, Datacenter: Datacenter [Datacenter: Datacenter:datacenter-3, VirtualCenterHost: vcenter.simon.local]] for node with nodeUUID 422c07ac-55cf-9ffe-1c0b-7cf1e27bca98 {"TraceId": "b4449fdd-dca0-476d-9911-07f2326c45e9"}
+vanilla/nodes.go:254 Getting accessible datastores for node VirtualMachine:vm-8933 {"TraceId": "b4449fdd-dca0-476d-9911-07f2326c45e9"}
+vanilla/nodes.go:254 Getting accessible datastores for node VirtualMachine:vm-8935 {"TraceId": "b4449fdd-dca0-476d-9911-07f2326c45e9"}
+vanilla/nodes.go:254 Getting accessible datastores for node VirtualMachine:vm-8924 {"TraceId": "b4449fdd-dca0-476d-9911-07f2326c45e9"}
+vanilla/nodes.go:254 Getting accessible datastores for node VirtualMachine:vm-8927 {"TraceId": "b4449fdd-dca0-476d-9911-07f2326c45e9"}
+2vanilla/nodes.go:254 Getting accessible datastores for node VirtualMachine:vm-8930 {"TraceId": "b4449fdd-dca0-476d-9911-07f2326c45e9"}
+vanilla/nodes.go:245 sharedDatastores : [Datastore: Datastore:datastore-12, datastore URL: ds:///vmfs/volumes/vsan:5280fc91230c425e-5243ffd2e9815f05/ Datastore: Datastore:datastore-45, datastore URL: ds:///vmfs/volumes/vsan:3672d400f5fa4515-8a8cb78f6b972f74/] {"TraceId": "b4449fdd-dca0-476d-9911-07f2326c45e9"}
+
+DEBUG common/vsphereutil.go:139 vSphere CNS driver creating volume pvc-3272a66b-dbf4-4a45-8cf1-a56873321d9b with create spec (*types.CnsVolumeCreateSpec)(0xc0005f60e0)({
+DynamicData: (types.DynamicData) {
+},
+Name: (string) (len=40) "pvc-3272a66b-dbf4-4a45-8cf1-a56873321d9b",
+VolumeType: (string) (len=5) "BLOCK",
+Datastores: ([]types.ManagedObjectReference) (len=1 cap=1) {
+(types.ManagedObjectReference) Datastore:datastore-45
+},
+Metadata: (types.CnsVolumeMetadata) {
+DynamicData: (types.DynamicData) {
+},
+ContainerCluster: (types.CnsContainerCluster) {
+DynamicData: (types.DynamicData) {
+},
+ClusterType: (string) (len=10) "KUBERNETES",
+ClusterId: (string) (len=36) "c7840599-4086-479d-9692-db4c48404af4",
+VSphereUser: (string) (len=20) "administrator@vsphere.local",
+ClusterFlavor: (string) (len=7) "VANILLA"
+},
+EntityMetadata: ([]types.BaseCnsEntityMetadata) <nil>,
+ContainerClusterArray: ([]types.CnsContainerCluster) (len=1 cap=1) {
+(types.CnsContainerCluster) {
+DynamicData: (types.DynamicData) {
+},
+ClusterType: (string) (len=10) "KUBERNETES",
+ClusterId: (string) (len=36) "c7840599-4086-479d-9692-db4c48404af4",
+VSphereUser: (string) (len=20) "administrator@vsphere.local",
+ClusterFlavor: (string) (len=7) "VANILLA"
+}
+}
+},
+BackingObjectDetails: (*types.CnsBlockBackingDetails)(0xc0006c4120)({
+CnsBackingObjectDetails: (types.CnsBackingObjectDetails) {
+DynamicData: (types.DynamicData) {
+},
+CapacityInMb: (int64) 5120
+},
+BackingDiskId: (string) ""
+}),
+Profile: ([]types.BaseVirtualMachineProfileSpec) (len=1 cap=1) {
+(*types.VirtualMachineDefinedProfileSpec)(0xc0005eb840)({
+VirtualMachineProfileSpec: (types.VirtualMachineProfileSpec) {
+DynamicData: (types.DynamicData) {
+}
+},
+ProfileId: (string) (len=36) "aa6d5a82-1c88-45da-85d3-3d74b91a5bad",
+ReplicationSpec: (*types.ReplicationSpec)(<nil>),
+ProfileData: (*types.VirtualMachineProfileRawData)(<nil>),
+ProfileParams: ([]types.KeyValue) <nil>
+})
+},
+CreateSpec: (types.BaseCnsBaseCreateSpec) <nil>
+})
+{"TraceId": "b4449fdd-dca0-476d-9911-07f2326c45e9"}
+
+volume/manager.go:161 Update VSphereUser from administrator@vsphere.local to vsphere.local\administrator {"TraceId": "b4449fdd-dca0-476d-9911-07f2326c45e9"}
+volume/manager.go:195 CreateVolume: VolumeName: "pvc-3272a66b-dbf4-4a45-8cf1-a56873321d9b", opId: "be4c762b" {"TraceId": "b4449fdd-dca0-476d-9911-07f2326c45e9"}
+volume/manager.go:218 CreateVolume: Volume created successfully. VolumeName: "pvc-3272a66b-dbf4-4a45-8cf1-a56873321d9b", opId: "be4c762b", volumeID: "7d84664e-89fc-4fb3-9418-353af715403d" {"TraceId": "b4449fdd-dca0-476d-9911-07f2326c45e9"}
+volume/manager.go:117 ClearTaskInfoObjects : Found an expired taskInfo object : Task:task-63206 for the VolumeName: "pvc-3272a66b-dbf4-4a45-8cf1-a56873321d9b". Deleting the object entry from volumeTaskMap
