@@ -1,0 +1,165 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: vsphere-csi-controller
+  namespace: kube-system
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
+  selector:
+    matchLabels:
+      app: vsphere-csi-controller
+  template:
+    metadata:
+      labels:
+        app: vsphere-csi-controller
+        role: vsphere-csi
+    spec:
+      dnsPolicy: "Default"
+      hostNetwork: true
+      nodeSelector:
+        node-role.kubernetes.io/master: ''
+      restartPolicy: Always
+      serviceAccountName: vsphere-csi-controller
+      tolerations:
+        - operator: "Exists"
+          effect: NoSchedule
+        - operator: "Exists"
+          effect: NoExecute
+      securityContext: {}
+      containers:
+        - name: csi-attacher
+          env:
+            - name: ADDRESS
+              value: /csi/csi.sock
+          volumeMounts:
+            - name: socket-dir
+              mountPath: /csi
+          image: 'quay.io/k8scsi/csi-attacher:v2.0.0'
+          args:
+            - '--v=4'
+            - '--timeout=300s'
+            - '--csi-address=$(ADDRESS)'
+            - '--leader-election'
+        - name: csi-resizer
+          env:
+            - name: ADDRESS
+              value: /csi/csi.sock
+          volumeMounts:
+            - name: socket-dir
+              mountPath: /csi
+          image: 'quay.io/k8scsi/csi-resizer:v0.3.0'
+          args:
+            - '--v=4'
+            - '--csiTimeout=300s'
+            - '--csi-address=$(ADDRESS)'
+            - '--leader-election'
+        - lifecycle:
+            preStop:
+              exec:
+                command:
+                  - /bin/sh
+                  - '-c'
+                  - >-
+                    rm -rf
+                    /var/lib/csi/sockets/pluginproxy/csi.vsphere.vmware.com
+          name: vsphere-csi-controller
+          securityContext:
+            privileged: true
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: healthz
+              scheme: HTTP
+            initialDelaySeconds: 10
+            timeoutSeconds: 3
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          env:
+            - name: CSI_ENDPOINT
+              value: 'unix:///var/lib/csi/sockets/pluginproxy/csi.sock'
+            - name: X_CSI_MODE
+              value: controller
+            - name: VSPHERE_CSI_CONFIG
+              value: /etc/cloud/csi-vsphere-for-OCP.conf
+            - name: LOGGER_LEVEL
+              value: PRODUCTION
+          securityContext:
+            privileged: true
+          ports:
+            - name: healthz
+              containerPort: 9808
+              protocol: TCP
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: vsphere-config-volume
+              readOnly: true
+              mountPath: /etc/cloud
+            - name: socket-dir
+              mountPath: /var/lib/csi/sockets/pluginproxy/
+          image: 'gcr.io/cloud-provider-vsphere/csi/release/driver:v2.0.0'
+        - name: liveness-probe
+          env:
+            - name: ADDRESS
+              value: /var/lib/csi/sockets/pluginproxy/csi.sock
+          volumeMounts:
+            - name: socket-dir
+              mountPath: /var/lib/csi/sockets/pluginproxy/
+          image: 'quay.io/k8scsi/livenessprobe:v1.1.0'
+          args:
+            - '--csi-address=$(ADDRESS)'
+        - name: vsphere-syncer
+          env:
+            - name: FULL_SYNC_INTERVAL_MINUTES
+              value: '30'
+            - name: VSPHERE_CSI_CONFIG
+              value: /etc/cloud/csi-vsphere-for-OCP.conf
+            - name: LOGGER_LEVEL
+              value: PRODUCTION
+          volumeMounts:
+            - name: vsphere-config-volume
+              readOnly: true
+              mountPath: /etc/cloud
+          image: 'gcr.io/cloud-provider-vsphere/csi/release/syncer:v2.0.0'
+          args:
+            - '--leader-election'
+        - name: csi-provisioner
+          env:
+            - name: ADDRESS
+              value: /csi/csi.sock
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: socket-dir
+              mountPath: /csi
+          terminationMessagePolicy: File
+          image: 'quay.io/k8scsi/csi-provisioner:v1.4.0'
+          args:
+            - '--v=4'
+            - '--timeout=300s'
+            - '--csi-address=$(ADDRESS)'
+            - '--feature-gates=Topology=true'
+            - '--strict-topology'
+            - '--enable-leader-election'
+            - '--leader-election-type=leases'
+      serviceAccount: vsphere-csi-controller
+      volumes:
+        - name: vsphere-config-volume
+          secret:
+            secretName: vsphere-config-secret
+        - name: socket-dir
+          hostPath:
+            path: /var/lib/csi/sockets/pluginproxy/csi.vsphere.vmware.com
+            type: DirectoryOrCreate
+---
+apiVersion: storage.k8s.io/v1beta1
+kind: CSIDriver
+metadata:
+  name: csi.vsphere.vmware.com
+spec:
+  attachRequired: true
+  podInfoOnMount: false
