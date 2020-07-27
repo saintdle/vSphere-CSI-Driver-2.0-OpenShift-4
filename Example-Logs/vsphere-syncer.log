@@ -1,0 +1,40 @@
+leaderelection.go:227] successfully acquired lease kube-system/vsphere-syncer
+syncer/metadatasyncer.go:83	Initializing MetadataSyncer
+kubernetes/kubernetes.go:67	k8s client using in-cluster config
+vsphere/virtualcentermanager.go:64	Initializing defaultVirtualCenterManager...
+vsphere/virtualcentermanager.go:66	Successfully initialized defaultVirtualCenterManager
+vsphere/virtualcentermanager.go:110	Successfully registered VC "vcenter.simon.local"
+vsphere/virtualcenter.go:143	New session ID for 'vsphere.local\administrator' = 52f626a8-b2a1-8bb9-55fc-e9b1b1385bd2
+volume/manager.go:93	Initializing new volume.defaultManager...
+syncer/metadatasyncer.go:152	Adding watch on path: "/etc/cloud"
+syncer/metadatasyncer.go:127	Waiting for event on fsnotify watcher
+syncer/metadatasyncer.go:202	Initialized metadata syncer
+syncer/metadatasyncer.go:70	FullSync: fullSync interval is set to 30 minutes
+syncer/metadatasyncer.go:209	fullSync is triggered	{"TraceId": "f9eee635-274d-4379-b253-d3ad33559408"}
+syncer/fullsync.go:37	FullSync: start	{"TraceId": "f9eee635-274d-4379-b253-d3ad33559408"}
+syncer/util.go:19	FullSync: Getting all PVs in Bound, Available or Released state	{"TraceId": "f9eee635-274d-4379-b253-d3ad33559408"}
+syncer/fullsync.go:58	FullSync: pvToPVCMap map[]	{"TraceId": "f9eee635-274d-4379-b253-d3ad33559408"}
+syncer/fullsync.go:59	FullSync: pvcToPodMap map[]	{"TraceId": "f9eee635-274d-4379-b253-d3ad33559408"}
+syncer/fullsync.go:271	could not find any volume which is present in both k8s and in CNS	{"TraceId": "f9eee635-274d-4379-b253-d3ad33559408"}
+sigs.k8s.io/vsphere-csi-driver/pkg/syncer.getEntityMetadata
+	/build/pkg/syncer/fullsync.go:271
+sigs.k8s.io/vsphere-csi-driver/pkg/syncer.csiFullSync
+	/build/pkg/syncer/fullsync.go:74
+sigs.k8s.io/vsphere-csi-driver/pkg/syncer.InitMetadataSyncer.func8
+	/build/pkg/syncer/metadatasyncer.go:213
+2020-07-27T09:51:46.440Z	DEBUG	syncer/fullsync.go:79	FullSync: pvToCnsEntityMetadataMap (map[string][]types.BaseCnsEntityMetadata) {
+}
+ 
+ pvToK8sEntityMetadataMap: (map[string][]types.BaseCnsEntityMetadata) {
+}
+ 
+	{"TraceId": "f9eee635-274d-4379-b253-d3ad33559408"}
+	
+FullSync: Getting all PVs in Bound, Available or Released state	{"TraceId": "f9eee635-274d-4379-b253-d3ad33559408"}
+FullSync: fullSyncDeleteVolumes could not find any volume which is not present in k8s and needs to be checked for volume deletion.	{"TraceId": "f9eee635-274d-4379-b253-d3ad33559408"}
+syncer/util.go:19	FullSync: Getting all PVs in Bound, Available or Released state	{"TraceId": "f9eee635-274d-4379-b253-d3ad33559408"}
+syncer/fullsync.go:94	FullSync: cnsDeletionMap at end of cycle: map[]	{"TraceId": "f9eee635-274d-4379-b253-d3ad33559408"}
+syncer/fullsync.go:95	FullSync: cnsCreationMap at end of cycle: map[]	{"TraceId": "f9eee635-274d-4379-b253-d3ad33559408"}
+syncer/fullsync.go:96	FullSync: end	{"TraceId": "f9eee635-274d-4379-b253-d3ad33559408"}
+
+syncer/metadatasyncer.go:398	PVUpdated: PV Updated from &PersistentVolume{ObjectMeta:k8s_io_apimachinery_pkg_apis_meta_v1.ObjectMeta{Name:pvc-3272a66b-dbf4-4a45-8cf1-a56873321d9b,GenerateName:,Namespace:,SelfLink:/api/v1/persistentvolumes/pvc-3272a66b-dbf4-4a45-8cf1-a56873321d9b,UID:9627b72c-b4d4-4fd8-82da-d6f1251e51dc,ResourceVersion:13868610,Generation:0,CreationTimestamp:2020-07-27 09:51:59 +0000 UTC,DeletionTimestamp:<nil>,DeletionGracePeriodSeconds:nil,Labels:map[string]string{},Annotations:map[string]string{pv.kubernetes.io/provisioned-by: csi.vsphere.vmware.com,},OwnerReferences:[],Finalizers:[kubernetes.io/pv-protection],ClusterName:,Initializers:nil,ManagedFields:[],},Spec:PersistentVolumeSpec{Capacity:ResourceList{storage: {{5368709120 0} {<nil>} 5Gi BinarySI},},PersistentVolumeSource:PersistentVolumeSource{GCEPersistentDisk:nil,AWSElasticBlockStore:nil,HostPath:nil,Glusterfs:nil,NFS:nil,RBD:nil,ISCSI:nil,Cinder:nil,CephFS:nil,FC:nil,Flocker:nil,FlexVolume:nil,AzureFile:nil,VsphereVolume:nil,Quobyte:nil,AzureDisk:nil,PhotonPersistentDisk:nil,PortworxVolume:nil,ScaleIO:nil,Local:nil,StorageOS:nil,CSI:&CSIPersistentVolumeSource{Driver:csi.vsphere.vmware.com,VolumeHandle:7d84664e-89fc-4fb3-9418-353af715403d,ReadOnly:false,FSType:ext4,VolumeAttributes:map[string]string{storage.kubernetes.io/csiProvisionerIdentity: 1595838290839-8081-csi.vsphere.vmware.com,type: vSphere CNS Block Volume,},ControllerPublishSecretRef:nil,NodeStageSecretRef:nil,NodePublishSecretRef:nil,},},AccessModes:[ReadWriteOnce],ClaimRef:&ObjectReference{Kind:PersistentVolumeClaim,Namespace:default,Name:example-openshift-vmc-block-pvc,UID:3272a66b-dbf4-4a45-8cf1-a56873321d9b,APIVersion:v1,ResourceVersion:13865124,FieldPath:,},PersistentVolumeReclaimPolicy:Delete,StorageClassName:csi-sc-vmc,MountOptions:[],VolumeMode:*Filesystem,NodeAffinity:nil,},Status:PersistentVolumeStatus{Phase:Pending,Message:,Reason:,},} to &PersistentVolume{ObjectMeta:k8s_io_apimachinery_pkg_apis_meta_v1.ObjectMeta{Name:pvc-3272a66b-dbf4-4a45-8cf1-a56873321d9b,GenerateName:,Namespace:,SelfLink:/api/v1/persistentvolumes/pvc-3272a66b-dbf4-4a45-8cf1-a56873321d9b,UID:9627b72c-b4d4-4fd8-82da-d6f1251e51dc,ResourceVersion:13868611,Generation:0,CreationTimestamp:2020-07-27 09:51:59 +0000 UTC,DeletionTimestamp:<nil>,DeletionGracePeriodSeconds:nil,Labels:map[string]string{},Annotations:map[string]string{pv.kubernetes.io/provisioned-by: csi.vsphere.vmware.com,},OwnerReferences:[],Finalizers:[kubernetes.io/pv-protection],ClusterName:,Initializers:nil,ManagedFields:[],},Spec:PersistentVolumeSpec{Capacity:ResourceList{storage: {{5368709120 0} {<nil>} 5Gi BinarySI},},PersistentVolumeSource:PersistentVolumeSource{GCEPersistentDisk:nil,AWSElasticBlockStore:nil,HostPath:nil,Glusterfs:nil,NFS:nil,RBD:nil,ISCSI:nil,Cinder:nil,CephFS:nil,FC:nil,Flocker:nil,FlexVolume:nil,AzureFile:nil,VsphereVolume:nil,Quobyte:nil,AzureDisk:nil,PhotonPersistentDisk:nil,PortworxVolume:nil,ScaleIO:nil,Local:nil,StorageOS:nil,CSI:&CSIPersistentVolumeSource{Driver:csi.vsphere.vmware.com,VolumeHandle:7d84664e-89fc-4fb3-9418-353af715403d,ReadOnly:false,FSType:ext4,VolumeAttributes:map[string]string{storage.kubernetes.io/csiProvisionerIdentity: 1595838290839-8081-csi.vsphere.vmware.com,type: vSphere CNS Block Volume,},ControllerPublishSecretRef:nil,NodeStageSecretRef:nil,NodePublishSecretRef:nil,},},AccessModes:[ReadWriteOnce],ClaimRef:&ObjectReference{Kind:PersistentVolumeClaim,Namespace:default,Name:example-openshift-vmc-block-pvc,UID:3272a66b-dbf4-4a45-8cf1-a56873321d9b,APIVersion:v1,ResourceVersion:13865124,FieldPath:,},PersistentVolumeReclaimPolicy:Delete,StorageClassName:csi-sc-vmc,MountOptions:[],VolumeMode:*Filesystem,NodeAffinity:nil,},Status:PersistentVolumeStatus{Phase:Bound,Message:,Reason:,},}	{"TraceId": "a5a42bef-2491-43bb-a2c6-01f59d5657a0"}
