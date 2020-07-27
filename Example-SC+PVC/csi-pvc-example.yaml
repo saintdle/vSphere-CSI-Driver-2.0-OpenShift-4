@@ -2,6 +2,8 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: csi-pvc
+  labels:
+    name: test-csi-pvc
   annotations:
     volume.beta.kubernetes.io/storage-class: csi-sc
 spec:
