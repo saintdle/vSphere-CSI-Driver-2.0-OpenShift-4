@@ -1,0 +1,21 @@
+controller.go:113] Starting CSI attacher
+reflector.go:123] Starting reflector *v1.PersistentVolume (10m0s) from k8s.io/client-go/informers/factory.go:133
+reflector.go:161] Listing and watching *v1.PersistentVolume from k8s.io/client-go/informers/factory.go:133
+reflector.go:123] Starting reflector *v1.Node (10m0s) from k8s.io/client-go/informers/factory.go:133
+reflector.go:161] Listing and watching *v1.Node from k8s.io/client-go/informers/factory.go:133
+reflector.go:123] Starting reflector *v1beta1.CSINode (10m0s) from k8s.io/client-go/informers/factory.go:133
+reflector.go:161] Listing and watching *v1beta1.CSINode from k8s.io/client-go/informers/factory.go:133
+reflector.go:123] Starting reflector *v1beta1.VolumeAttachment (10m0s) from k8s.io/client-go/informers/factory.go:133
+reflector.go:161] Listing and watching *v1beta1.VolumeAttachment from k8s.io/client-go/informers/factory.go:133
+shared_informer.go:123] caches populated
+controller.go:205] Started PV processing "pvc-3272a66b-dbf4-4a45-8cf1-a56873321d9b"
+csi_handler.go:444] CSIHandler: processing PV "pvc-3272a66b-dbf4-4a45-8cf1-a56873321d9b"
+csi_handler.go:448] CSIHandler: processing PV "pvc-3272a66b-dbf4-4a45-8cf1-a56873321d9b": no deletion timestamp, ignoring
+controller.go:205] Started PV processing "pvc-3272a66b-dbf4-4a45-8cf1-a56873321d9b"
+csi_handler.go:444] CSIHandler: processing PV "pvc-3272a66b-dbf4-4a45-8cf1-a56873321d9b"
+csi_handler.go:448] CSIHandler: processing PV "pvc-3272a66b-dbf4-4a45-8cf1-a56873321d9b": no deletion timestamp, ignoring
+reflector.go:370] k8s.io/client-go/informers/factory.go:133: Watch close - *v1.PersistentVolume total 2 items received
+reflector.go:370] k8s.io/client-go/informers/factory.go:133: Watch close - *v1beta1.CSINode total 0 items received
+reflector.go:370] k8s.io/client-go/informers/factory.go:133: Watch close - *v1.Node total 33 items received
+reflector.go:370] k8s.io/client-go/informers/factory.go:133: Watch close - *v1beta1.VolumeAttachment total 0 items received
+reflector.go:235] k8s.io/client-go/informers/factory.go:133: forcing resync
