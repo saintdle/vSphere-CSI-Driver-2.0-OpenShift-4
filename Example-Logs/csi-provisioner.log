@@ -1,0 +1,19 @@
+controller.go:770] Starting provisioner controller csi.vsphere.vmware.com_master2.ocp43.simon.local_d60166e1-ffd5-4264-984d-bcb7e0240903!
+volume_store.go:97] Starting save volume queue
+reflector.go:122] Starting reflector *v1.PersistentVolumeClaim (15m0s) from sigs.k8s.io/sig-storage-lib-external-provisioner/controller/controller.go:801
+reflector.go:160] Listing and watching *v1.PersistentVolumeClaim from sigs.k8s.io/sig-storage-lib-external-provisioner/controller/controller.go:801
+reflector.go:122] Starting reflector *v1.PersistentVolume (15m0s) from sigs.k8s.io/sig-storage-lib-external-provisioner/controller/controller.go:804
+reflector.go:160] Listing and watching *v1.PersistentVolume from sigs.k8s.io/sig-storage-lib-external-provisioner/controller/controller.go:804
+reflector.go:122] Starting reflector *v1.StorageClass (15m0s) from sigs.k8s.io/sig-storage-lib-external-provisioner/controller/controller.go:807
+reflector.go:160] Listing and watching *v1.StorageClass from sigs.k8s.io/sig-storage-lib-external-provisioner/controller/controller.go:807
+shared_informer.go:177] caches populated
+controller.go:819] Started provisioner controller csi.vsphere.vmware.com_master2.ocp43.simon.local_d60166e1-ffd5-4264-984d-bcb7e0240903!
+controller.go:1199] provision "default/example-openshift-vmc-block-pvc" class "csi-sc-vmc": started
+event.go:255] Event(v1.ObjectReference{Kind:"PersistentVolumeClaim", Namespace:"default", Name:"example-openshift-vmc-block-pvc", UID:"3272a66b-dbf4-4a45-8cf1-a56873321d9b", APIVersion:"v1", ResourceVersion:"13865124", FieldPath:""}): type: 'Normal' reason: 'Provisioning' External provisioner is provisioning volume for claim "default/example-openshift-vmc-block-pvc"
+topology.go:331] No topology keys found on any node
+controller.go:549] create volume rep: {CapacityBytes:5368709120 VolumeId:7d84664e-89fc-4fb3-9418-353af715403d VolumeContext:map[type:vSphere CNS Block Volume] ContentSource:<nil> AccessibleTopology:[] XXX_NoUnkeyedLiteral:{} XXX_unrecognized:[] XXX_sizecache:0}
+controller.go:631] successfully created PV pvc-3272a66b-dbf4-4a45-8cf1-a56873321d9b for PVC example-openshift-vmc-block-pvc and csi volume name 7d84664e-89fc-4fb3-9418-353af715403d
+controller.go:1281] provision "default/example-openshift-vmc-block-pvc" class "csi-sc-vmc": volume "pvc-3272a66b-dbf4-4a45-8cf1-a56873321d9b" provisioned
+controller.go:1298] provision "default/example-openshift-vmc-block-pvc" class "csi-sc-vmc": succeeded
+event.go:255] Event(v1.ObjectReference{Kind:"PersistentVolumeClaim", Namespace:"default", Name:"example-openshift-vmc-block-pvc", UID:"3272a66b-dbf4-4a45-8cf1-a56873321d9b", APIVersion:"v1", ResourceVersion:"13865124", FieldPath:""}): type: 'Normal' reason: 'ProvisioningSucceeded' Successfully provisioned volume pvc-3272a66b-dbf4-4a45-8cf1-a56873321d9b
+reflector.go:389] sigs.k8s.io/sig-storage-lib-external-provisioner/controller/controller.go:804: Watch close - *v1.PersistentVolume total 3 items received
