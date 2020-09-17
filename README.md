@@ -1,7 +1,13 @@
 # Container Storage Interface (CSI) driver for vSphere 6.x/7.x and OpenShift Container Platform 4.x
-This repository provides scripts for deploying the vSphere CSI provider on an OCP environment. The driver in these files is 2.0 
+This repository provides scripts for deploying the vSphere CSI provider on an OCP environment. The driver in these files is 2.0. 
 
-You can read my complete blog here: https://veducate.co.uk/how-to-install-vsphere-csi-driver-openshift/
+You can read my complete blogs here: 
+
+   Installing the CSI driver in Openshift 4.x and creating a block PVC
+   https://veducate.co.uk/how-to-install-vsphere-csi-driver-openshift/
+   
+   Using the CSI Driver in Openshift 4.x with VSAN Native File Services
+   https://veducate.co.uk/vsphere-csi-driver-openshift-vsan-file-services/
 
 # Installation
 
