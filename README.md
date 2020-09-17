@@ -3,10 +3,12 @@ This repository provides scripts for deploying the vSphere CSI provider on an OC
 
 You can read my complete blogs here: 
 
-   Installing the CSI driver in Openshift 4.x and creating a block PVC
+   > Installing the CSI driver in Openshift 4.x and creating a block PVC
+
    https://veducate.co.uk/how-to-install-vsphere-csi-driver-openshift/
    
-   Using the CSI Driver in Openshift 4.x with VSAN Native File Services
+   > Using the CSI Driver in Openshift 4.x with VSAN Native File Services
+
    https://veducate.co.uk/vsphere-csi-driver-openshift-vsan-file-services/
 
 # Installation
