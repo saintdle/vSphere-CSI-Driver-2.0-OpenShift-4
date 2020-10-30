@@ -10,10 +10,11 @@ You can read my complete blogs here:
    > Using the CSI Driver in Openshift 4.x with VSAN Native File Services
 
    https://veducate.co.uk/vsphere-csi-driver-openshift-vsan-file-services/
-
+   
+   
 # Installation
 
-Please read the prerequisites from the documentation below. 
+Please read the prerequisites from the official documentation below.
 
 To create the vCenter roles you can use this script;
 
@@ -32,6 +33,8 @@ Install the vSphere CSI driver which is made up of a CSI Controller and CSI Node
 
     Command: oc create --from-file=vsphere-csi-controller-deployment-for-OCP.yaml
     Command: oc create --from-file=vsphere-csi-node-ds-for-OCP.yaml
+
+Tested with vSphere 6.7 u3 and vSphere 7.0, requires the OCP Node Virtual Machines to be VM Hardware 15 or higher. 
 
 # Documentation
 
