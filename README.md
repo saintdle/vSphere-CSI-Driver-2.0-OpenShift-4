@@ -11,6 +11,7 @@ You can read my complete blogs here:
 
    https://veducate.co.uk/vsphere-csi-driver-openshift-vsan-file-services/
    
+This is not intended to be an official solution
    
 # Installation
 
